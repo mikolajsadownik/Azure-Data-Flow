@@ -1,0 +1,170 @@
+<svg width="1500" height="900" viewBox="0 0 1500 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Graphical Azure Data Flow architecture</title>
+  <desc id="desc">A picture-style architecture diagram showing the FastAPI ride event producer, Azure Event Hubs, Azure Data Factory, ADLS Gen2, and Databricks medallion layers.</desc>
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#edf7fa"/>
+      <stop offset="1" stop-color="#f9fbfd"/>
+    </linearGradient>
+    <linearGradient id="azure" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1677c8"/>
+      <stop offset="1" stop-color="#0f4d88"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f8a99"/>
+      <stop offset="1" stop-color="#0d5965"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#36a269"/>
+      <stop offset="1" stop-color="#1f6844"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3c648"/>
+      <stop offset="1" stop-color="#b88312"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="15" flood-color="#1b2733" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrow" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#116a7b"/>
+    </marker>
+    <marker id="arrow-soft" markerWidth="13" markerHeight="13" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#7b93a4"/>
+    </marker>
+    <style>
+      .title { font: 800 38px 'Segoe UI', Arial, sans-serif; fill: #17202a; }
+      .subtitle { font: 500 18px 'Segoe UI', Arial, sans-serif; fill: #657282; }
+      .section { font: 800 18px 'Segoe UI', Arial, sans-serif; fill: #657282; text-transform: uppercase; }
+      .node-title { font: 800 22px 'Segoe UI', Arial, sans-serif; fill: #17202a; }
+      .node-small { font: 600 15px 'Segoe UI', Arial, sans-serif; fill: #657282; }
+      .tiny { font: 800 12px 'Segoe UI', Arial, sans-serif; fill: #657282; }
+      .done { font: 800 12px 'Segoe UI', Arial, sans-serif; fill: #0f5132; }
+      .panel { fill: #ffffff; stroke: #d9e0e7; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .icon-card { fill: #f7fafc; stroke: #d9e0e7; stroke-width: 1.2; rx: 16; }
+      .line { fill: none; stroke: #116a7b; stroke-width: 4; marker-end: url(#arrow); }
+      .line-soft { fill: none; stroke: #116a7b; stroke-width: 4; marker-end: url(#arrow); }
+      .badge-done { fill: #dff5e9; }
+      .white-stroke { fill: none; stroke: #ffffff; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+      .white-fill { fill: #ffffff; }
+      .dark-stroke { fill: none; stroke: #17202a; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .muted-stroke { fill: none; stroke: #94a3b8; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .layer-chip { fill: #eef3f6; stroke: #d9e0e7; rx: 12; }
+    </style>
+  </defs>
+
+  <rect width="1500" height="900" fill="url(#page)"/>
+  <text x="60" y="64" class="title">Azure Data Flow</text>
+  <text x="60" y="96" class="subtitle">Ride-booking events, batch reference ingestion, and Databricks medallion processing.</text>
+
+  <g transform="translate(60 128)">
+    <rect class="panel" width="1380" height="710"/>
+
+    <text x="38" y="56" class="section">Real-time event path</text>
+    <text x="38" y="414" class="section">Batch and reference path</text>
+
+    <g transform="translate(42 92)">
+      <rect class="icon-card" width="220" height="230"/>
+      <rect x="50" y="34" width="120" height="82" rx="10" fill="url(#teal)"/>
+      <rect x="66" y="52" width="88" height="10" rx="5" class="white-fill" opacity="0.9"/>
+      <rect x="66" y="74" width="62" height="10" rx="5" class="white-fill" opacity="0.75"/>
+      <path d="M72 145 L148 145" class="dark-stroke"/>
+      <path d="M110 116 L110 145" class="dark-stroke"/>
+      <text x="28" y="178" class="node-title">FastAPI GUI</text>
+      <text x="28" y="204" class="node-small">Publishes ride JSON</text>
+      <rect x="28" y="28" width="58" height="24" rx="12" class="badge-done"/>
+      <text x="42" y="45" class="done">DONE</text>
+    </g>
+
+    <path class="line" d="M276 207 C330 207 342 207 396 207"/>
+
+    <g transform="translate(408 92)">
+      <rect class="icon-card" width="220" height="230"/>
+      <circle cx="110" cy="74" r="48" fill="url(#azure)"/>
+      <path d="M82 75 C98 44 121 44 138 75" class="white-stroke"/>
+      <path d="M82 75 C98 105 121 105 138 75" class="white-stroke"/>
+      <path d="M68 75 H152" class="white-stroke"/>
+      <text x="28" y="178" class="node-title">Event Hubs</text>
+      <text x="28" y="204" class="node-small">Stream buffer</text>
+      <rect x="28" y="28" width="58" height="24" rx="12" class="badge-done"/>
+      <text x="42" y="45" class="done">DONE</text>
+    </g>
+
+    <path class="line" d="M642 207 C696 207 708 207 762 207"/>
+
+    <g transform="translate(774 92)">
+      <rect class="icon-card" width="250" height="230"/>
+      <g transform="translate(64 34)">
+        <polygon points="60,0 120,30 60,60 0,30" fill="#ff6b35"/>
+        <polygon points="60,38 120,68 60,98 0,68" fill="#f05a28"/>
+        <polygon points="60,76 120,106 60,136 0,106" fill="#d94a1f"/>
+      </g>
+      <text x="28" y="178" class="node-title">Databricks</text>
+      <text x="28" y="204" class="node-small">Streaming jobs</text>
+      <rect x="28" y="28" width="58" height="24" rx="12" class="badge-done"/>
+      <text x="42" y="45" class="done">DONE</text>
+    </g>
+
+    <path class="line-soft" d="M1038 207 C1092 207 1104 207 1158 207"/>
+
+    <g transform="translate(1170 92)">
+      <rect class="icon-card" width="170" height="230"/>
+      <circle cx="85" cy="74" r="48" fill="url(#gold)"/>
+      <rect x="54" y="90" width="18" height="36" rx="4" class="white-fill"/>
+      <rect x="78" y="70" width="18" height="56" rx="4" class="white-fill"/>
+      <rect x="102" y="50" width="18" height="76" rx="4" class="white-fill"/>
+      <text x="28" y="178" class="node-title">Reports</text>
+      <text x="28" y="204" class="node-small">BI layer</text>
+      <rect x="28" y="28" width="58" height="24" rx="12" class="badge-done"/>
+      <text x="42" y="45" class="done">DONE</text>
+    </g>
+
+    <g transform="translate(42 452)">
+      <rect class="icon-card" width="220" height="190"/>
+      <path d="M78 34 H144 L168 58 V124 H78 Z" fill="#f8fafc" stroke="#116a7b" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M144 34 V58 H168" class="muted-stroke"/>
+      <path d="M96 76 H148 M96 96 H148" class="muted-stroke"/>
+      <text x="28" y="148" class="node-title">JSON files</text>
+      <text x="28" y="172" class="node-small">Bulk and lookup data</text>
+    </g>
+
+    <path class="line" d="M276 547 C330 547 342 547 396 547"/>
+
+    <g transform="translate(408 452)">
+      <rect class="icon-card" width="220" height="190"/>
+      <rect x="72" y="46" width="92" height="78" rx="8" fill="url(#azure)"/>
+      <rect x="52" y="68" width="36" height="56" rx="6" fill="#55a5df"/>
+      <rect x="148" y="68" width="36" height="56" rx="6" fill="#55a5df"/>
+      <path d="M88 96 H148" class="white-stroke"/>
+      <text x="28" y="148" class="node-title">Data Factory</text>
+      <text x="28" y="172" class="node-small">ADF copy flow</text>
+    </g>
+
+    <path class="line" d="M642 547 C696 547 708 547 762 547"/>
+
+    <g transform="translate(774 452)">
+      <rect class="icon-card" width="250" height="190"/>
+      <ellipse cx="125" cy="56" rx="62" ry="24" fill="#62b4e9"/>
+      <path d="M63 56 V118 C63 131 91 142 125 142 C159 142 187 131 187 118 V56" fill="#2f80c2"/>
+      <ellipse cx="125" cy="118" rx="62" ry="24" fill="#1d6fae"/>
+      <text x="28" y="148" class="node-title">ADLS Gen2</text>
+      <text x="28" y="172" class="node-small">Raw landing storage</text>
+    </g>
+
+    <path class="line" d="M899 452 C899 402 899 377 899 326"/>
+
+    <g transform="translate(1126 452)">
+      <rect class="icon-card" width="214" height="190"/>
+      <rect x="28" y="34" width="158" height="34" class="layer-chip"/>
+      <text x="46" y="56" class="node-small">Bronze</text>
+      <rect x="28" y="78" width="158" height="34" class="layer-chip"/>
+      <text x="46" y="100" class="node-small">Silver OBT</text>
+      <rect x="28" y="122" width="158" height="34" class="layer-chip"/>
+      <text x="46" y="144" class="node-small">Gold model</text>
+    </g>
+
+    <g transform="translate(42 640)">
+      <rect width="1298" height="1" fill="#d9e0e7"/>
+      <text x="0" y="34" class="tiny">Finished architecture: FastAPI and ADF feed Event Hubs, ADLS, and Databricks Bronze/Silver/Gold layers.</text>
+    </g>
+  </g>
+</svg>

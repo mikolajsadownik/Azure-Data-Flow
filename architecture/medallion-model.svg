@@ -1,0 +1,86 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Databricks medallion model</title>
+  <desc id="desc">Finished Databricks medallion design with Bronze, Silver, and Gold layers.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#edf7f2"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#17202a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#116a7b"/>
+    </marker>
+    <style>
+      .title { font: 800 32px 'Segoe UI', Arial, sans-serif; fill: #17202a; }
+      .subtitle { font: 500 16px 'Segoe UI', Arial, sans-serif; fill: #657282; }
+      .layer-title { font: 800 25px 'Segoe UI', Arial, sans-serif; fill: #17202a; }
+      .label { font: 700 15px 'Segoe UI', Arial, sans-serif; fill: #17202a; }
+      .small { font: 600 13px 'Segoe UI', Arial, sans-serif; fill: #657282; }
+      .done { font: 800 12px 'Segoe UI', Arial, sans-serif; fill: #0f5132; }
+      .panel { fill: #ffffff; stroke: #d9e0e7; stroke-width: 1.5; rx: 16; filter: url(#shadow); }
+      .bronze { stroke: #b7791f; }
+      .silver { stroke: #8a9baa; }
+      .gold { stroke: #c9a227; }
+      .pill-done { fill: #dff5e9; }
+      .table-box { fill: #f7f9fb; stroke: #d9e0e7; stroke-width: 1; rx: 10; }
+      .pipe { fill: none; stroke: #116a7b; stroke-width: 3; marker-end: url(#arrow); }
+      .pipe-soft { fill: none; stroke: #116a7b; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#bg)"/>
+  <text x="48" y="58" class="title">Databricks Medallion Model</text>
+  <text x="48" y="86" class="subtitle">Final analytical design from raw landing to enriched OBT and star schema.</text>
+
+  <g transform="translate(48 132)">
+    <rect class="panel bronze" width="330" height="280"/>
+    <text x="28" y="46" class="layer-title">Bronze</text>
+    <rect x="28" y="62" width="58" height="22" rx="11" class="pill-done"/>
+    <text x="42" y="77" class="done">DONE</text>
+    <text x="28" y="112" class="small">Raw landing tables</text>
+    <rect x="28" y="138" width="274" height="32" class="table-box"/>
+    <text x="44" y="159" class="label">bulk_rides</text>
+    <rect x="28" y="178" width="274" height="32" class="table-box"/>
+    <text x="44" y="199" class="label">rides_raw</text>
+    <rect x="28" y="218" width="274" height="32" class="table-box"/>
+    <text x="44" y="239" class="label">map_* reference tables</text>
+  </g>
+
+  <path class="pipe-soft" d="M388 272 C425 272 435 272 472 272"/>
+
+  <g transform="translate(476 132)">
+    <rect class="panel silver" width="330" height="280"/>
+    <text x="28" y="46" class="layer-title">Silver</text>
+    <rect x="28" y="62" width="58" height="22" rx="11" class="pill-done"/>
+    <text x="42" y="77" class="done">DONE</text>
+    <text x="28" y="112" class="small">Clean enriched ride data</text>
+    <rect x="28" y="138" width="274" height="32" class="table-box"/>
+    <text x="44" y="159" class="label">stg_rides</text>
+    <rect x="28" y="178" width="274" height="32" class="table-box"/>
+    <text x="44" y="199" class="label">silver_obt</text>
+    <rect x="28" y="218" width="274" height="32" class="table-box"/>
+    <text x="44" y="239" class="label">mapped reference data</text>
+  </g>
+
+  <path class="pipe-soft" d="M816 272 C853 272 863 272 900 272"/>
+
+  <g transform="translate(904 132)">
+    <rect class="panel gold" width="248" height="280"/>
+    <text x="28" y="46" class="layer-title">Gold</text>
+    <rect x="28" y="62" width="58" height="22" rx="11" class="pill-done"/>
+    <text x="42" y="77" class="done">DONE</text>
+    <text x="28" y="112" class="small">Analytics star schema</text>
+    <rect x="28" y="138" width="192" height="32" class="table-box"/>
+    <text x="44" y="159" class="label">fact</text>
+    <rect x="28" y="178" width="192" height="32" class="table-box"/>
+    <text x="44" y="199" class="label">dim_passenger</text>
+    <rect x="28" y="218" width="192" height="32" class="table-box"/>
+    <text x="44" y="239" class="label">driver, vehicle, payment</text>
+  </g>
+
+  <g transform="translate(154 438)">
+    <text class="small">Finished target state: Databricks serves data through Bronze, Silver, and Gold layers.</text>
+  </g>
+</svg>
