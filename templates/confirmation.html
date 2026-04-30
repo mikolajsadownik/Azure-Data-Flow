@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Ride Event Published{% endblock %}
+
+{% block content %}
+<section class="confirmation-layout">
+    <div class="primary-panel">
+        <div class="confirmation-head">
+            <span class="success-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="m5 12.4 4.1 4.1L19 6.8" />
+                </svg>
+            </span>
+            <div>
+                <p class="eyebrow">Event published</p>
+                <h1>{{ ride.confirmation_number }}</h1>
+            </div>
+        </div>
+
+        <dl class="receipt-grid">
+            <div>
+                <dt>Ride ID</dt>
+                <dd>{{ ride.ride_id }}</dd>
+            </div>
+            <div>
+                <dt>Passenger</dt>
+                <dd>{{ ride.passenger_name }}</dd>
+            </div>
+            <div>
+                <dt>Driver</dt>
+                <dd>{{ ride.driver_name }}</dd>
+            </div>
+            <div>
+                <dt>Total fare</dt>
+                <dd>${{ "%.2f"|format(ride.total_fare) }}</dd>
+            </div>
+            <div>
+                <dt>Distance</dt>
+                <dd>{{ "%.2f"|format(ride.distance_miles) }} mi</dd>
+            </div>
+            <div>
+                <dt>Duration</dt>
+                <dd>{{ ride.duration_minutes }} min</dd>
+            </div>
+        </dl>
+
+        <div class="action-row">
+            <a class="secondary-button" href="/">Back to console</a>
+            <form action="/book" method="post">
+                <button class="primary-button compact-button" type="submit">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                        <path d="M4 12h13.2m0 0-5.1-5.1M17.2 12l-5.1 5.1" />
+                    </svg>
+                    <span>Send another</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <aside class="side-panel">
+        <div class="section-heading compact">
+            <p class="eyebrow">Event details</p>
+            <h2>Delivery</h2>
+        </div>
+
+        <dl class="detail-list">
+            <div>
+                <dt>Status</dt>
+                <dd>{% if sent %}Accepted{% else %}Failed{% endif %}</dd>
+            </div>
+            <div>
+                <dt>Event Hub</dt>
+                <dd>{{ event_hub.event_hub_name }}</dd>
+            </div>
+            <div>
+                <dt>Pickup city ID</dt>
+                <dd>{{ ride.pickup_city_id }}</dd>
+            </div>
+            <div>
+                <dt>Dropoff city ID</dt>
+                <dd>{{ ride.dropoff_city_id }}</dd>
+            </div>
+            <div>
+                <dt>Booked at</dt>
+                <dd>{{ ride.booking_timestamp }}</dd>
+            </div>
+        </dl>
+    </aside>
+</section>
+{% endblock %}

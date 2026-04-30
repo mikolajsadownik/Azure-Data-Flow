@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Ride Event Console{% endblock %}
+
+{% block content %}
+<section class="workspace-grid">
+    <div class="primary-panel">
+        <div class="section-heading">
+            <p class="eyebrow">Live event source</p>
+            <h1>Publish a ride confirmation</h1>
+        </div>
+
+        <dl class="status-grid">
+            <div>
+                <dt>Event Hub</dt>
+                <dd>{{ event_hub.event_hub_name }}</dd>
+            </div>
+            <div>
+                <dt>Connection</dt>
+                <dd>{% if event_hub.connection_string_loaded %}Loaded{% else %}Missing{% endif %}</dd>
+            </div>
+            <div>
+                <dt>Payload</dt>
+                <dd>Ride confirmation</dd>
+            </div>
+        </dl>
+
+        <form class="send-form" action="/book" method="post">
+            <button class="primary-button" type="submit" {% if not event_hub.configured %}disabled{% endif %}>
+                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 12h13.2m0 0-5.1-5.1M17.2 12l-5.1 5.1" />
+                </svg>
+                <span>Send ride event</span>
+            </button>
+        </form>
+    </div>
+
+    <aside class="side-panel">
+        <div class="section-heading compact">
+            <p class="eyebrow">Stream contract</p>
+            <h2>Core fields</h2>
+        </div>
+
+        <ul class="field-list">
+            <li><span>ride_id</span><strong>UUID</strong></li>
+            <li><span>passenger_id</span><strong>UUID</strong></li>
+            <li><span>driver_id</span><strong>UUID</strong></li>
+            <li><span>pickup_timestamp</span><strong>timestamp</strong></li>
+            <li><span>total_fare</span><strong>decimal</strong></li>
+            <li><span>ride_status_id</span><strong>integer</strong></li>
+        </ul>
+    </aside>
+</section>
+
+<section class="data-strip" aria-label="Pipeline stages">
+    <div>
+        <span class="stage-index">01</span>
+        <strong>FastAPI</strong>
+        <span>web source</span>
+    </div>
+    <div>
+        <span class="stage-index">02</span>
+        <strong>Event Hubs</strong>
+        <span>stream buffer</span>
+    </div>
+    <div>
+        <span class="stage-index">03</span>
+        <strong>Databricks</strong>
+        <span>bronze and silver</span>
+    </div>
+    <div>
+        <span class="stage-index">04</span>
+        <strong>Star schema</strong>
+        <span>facts and dimensions</span>
+    </div>
+</section>
+{% endblock %}

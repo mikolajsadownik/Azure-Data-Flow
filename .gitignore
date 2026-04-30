@@ -12,7 +12,7 @@
 # Crash logs
 crash.log
 crash.*.log
-
+logs
 # Terraform lock file
 .terraform.lock.hcl
 
@@ -31,5 +31,6 @@ terraform.rc
 *.plan
 
 # Local environment files
+.venv
 .env
 .env.*

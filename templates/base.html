@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ride Event Console{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="/">
+                <span class="brand-mark" aria-hidden="true">RE</span>
+                <span>
+                    <span class="brand-title">Ride Event Console</span>
+                    <span class="brand-subtitle">Azure Data Flow</span>
+                </span>
+            </a>
+            <div class="topbar-meta">
+                <span class="status-pill {% if event_hub.configured %}status-ready{% else %}status-warning{% endif %}">
+                    {% if event_hub.configured %}Ready{% else %}Needs config{% endif %}
+                </span>
+                <span class="hub-name">{{ event_hub.event_hub_name }}</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

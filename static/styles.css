@@ -1,0 +1,414 @@
+:root {
+  color-scheme: light;
+  --bg: #eef2f5;
+  --surface: #ffffff;
+  --surface-muted: #f7f9fb;
+  --ink: #17202a;
+  --muted: #657282;
+  --line: #d9e0e7;
+  --brand: #116a7b;
+  --brand-dark: #0b4d59;
+  --accent: #2f855a;
+  --warning: #a15c11;
+  --shadow: 0 18px 45px rgba(23, 32, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px clamp(20px, 4vw, 48px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.brand-title,
+.brand-subtitle {
+  display: block;
+}
+
+.brand-title {
+  font-weight: 800;
+}
+
+.brand-subtitle,
+.hub-name,
+.eyebrow,
+dt,
+.field-list strong,
+.data-strip span {
+  color: var(--muted);
+}
+
+.brand-subtitle,
+.hub-name {
+  font-size: 0.88rem;
+}
+
+.topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-ready {
+  color: #0f5132;
+  background: #dff5e9;
+}
+
+.status-warning {
+  color: var(--warning);
+  background: #fff1d8;
+}
+
+.main-content {
+  width: min(1180px, calc(100% - 40px));
+  margin: 34px auto 48px;
+}
+
+.workspace-grid,
+.confirmation-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.75fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.primary-panel,
+.side-panel,
+.data-strip > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.primary-panel {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.side-panel {
+  padding: 24px;
+}
+
+.section-heading {
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+
+.section-heading.compact {
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+.status-grid,
+.receipt-grid,
+.detail-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.status-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 28px;
+}
+
+.status-grid > div,
+.receipt-grid > div,
+.detail-list > div {
+  min-width: 0;
+  padding: 14px;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+dt {
+  margin-bottom: 5px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 800;
+}
+
+.send-form,
+.action-row form {
+  margin: 0;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.primary-button {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: var(--brand-dark);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.secondary-button {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.secondary-button:hover {
+  border-color: var(--brand);
+}
+
+.primary-button svg,
+.success-mark svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.field-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.field-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.field-list li:last-child {
+  border-bottom: 0;
+}
+
+.field-list span,
+.field-list strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.field-list span {
+  font-weight: 800;
+}
+
+.field-list strong {
+  flex: 0 0 auto;
+  font-size: 0.84rem;
+}
+
+.data-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.data-strip > div {
+  min-width: 0;
+  padding: 18px;
+}
+
+.data-strip strong,
+.data-strip span {
+  display: block;
+}
+
+.data-strip strong {
+  margin: 6px 0 3px;
+}
+
+.stage-index {
+  font-weight: 900;
+  color: var(--brand);
+}
+
+.confirmation-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.success-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.receipt-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.compact-button {
+  min-height: 44px;
+}
+
+.detail-list {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 900px) {
+  .workspace-grid,
+  .confirmation-layout,
+  .data-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main-content {
+    width: min(100% - 24px, 1180px);
+    margin-top: 18px;
+  }
+
+  .primary-panel,
+  .side-panel {
+    padding: 18px;
+  }
+
+  .receipt-grid {
+    grid-template-columns: 1fr;
+  }
+}
