@@ -48,3 +48,15 @@ resource "azurerm_data_factory" "adf" {
   location            = azurerm_resource_group.rg_azure_data_flow.location
   resource_group_name = azurerm_resource_group.rg_azure_data_flow.name
 }
+
+resource "azurerm_storage_account" "storage_account" {
+  name                     = var.storage_account_name
+  resource_group_name      = azurerm_resource_group.rg_azure_data_flow.name
+  location                 = azurerm_resource_group.rg_azure_data_flow.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  is_hns_enabled = true
+  tags = {
+    environment = "dev"
+  }
+}

@@ -21,3 +21,8 @@ variable "adf_name" {
   type        = string
   description = "Azure data factory name"
 }
+
+variable "storage_account_name" {
+  type        = string
+  description = "Storage account name for Azure Data Lake"
+}
