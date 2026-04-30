@@ -42,3 +42,9 @@ resource "azurerm_eventhub_authorization_rule" "listen_policy" {
   send                = false
   manage              = false
 }
+
+resource "azurerm_data_factory" "adf" {
+  name                = var.adf_name
+  location            = azurerm_resource_group.rg_azure_data_flow.location
+  resource_group_name = azurerm_resource_group.rg_azure_data_flow.name
+}

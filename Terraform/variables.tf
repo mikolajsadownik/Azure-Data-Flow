@@ -17,3 +17,7 @@ variable "eventhub_name" {
   description = "Eventhub name"
 }
 
+variable "adf_name" {
+  type        = string
+  description = "Azure data factory name"
+}
